@@ -13,14 +13,11 @@ from models import storage
                  strict_slashes=False)
 def cities_view(state_id):
     """ return a jsonified cities objects """
-    get_id = storage.get(State, state_id)
-    if get_id is None:
+    state = storage.get(State, state_id)
+    if not state:
         abort(404)
-    obj_cities_list = get_id.cities
-    cities_list_to_dict = []
-    for value in obj_cities_list:
-        cities_list_to_dict.append(value.to_dict())
-    return (jsonify(cities_list_to_dict))
+    cities = [city.to_dict() for city in state.cities]
+    return jsonify(cities)
 
 
 @app_views.route('/cities/<city_id>', methods=["GET"], strict_slashes=False)
