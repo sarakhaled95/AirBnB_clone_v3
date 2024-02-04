@@ -2,7 +2,7 @@
 """ index file """
 
 from api.v1.views import app_views
-import jsonify
+from flask import jsonify
 from models import storage
 
 @app_views.route('/status', methods=['GET'])
