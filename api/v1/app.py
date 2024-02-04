@@ -11,9 +11,9 @@ from flask_cors import CORS
 import os
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
-app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+CORS(app, resources={r'/api/v1/*': {"origins": "0.0.0.0"}})
 app.register_blueprint(app_views)
+app.url_map.strict_slashes = False
 HBNB_API_HOST = os.getenv("HBNB_API_HOST")
 HBNB_API_PORT = os.getenv("HBNB_API_PORT")
 
