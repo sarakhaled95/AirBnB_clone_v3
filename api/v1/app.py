@@ -3,7 +3,7 @@
 import storage from models
 import app_views from api.v1.views
 register the blueprint app_views to your Flask instance app
-declare a method to handle @app.teardown_appcontext that calls storage.close()"""
+declare a method to handle @app.teardown_appcontext"""
 from models import storage
 from api.v1.views import app_views
 from flask import Flask, make_response, jsonify
@@ -29,6 +29,7 @@ def teardown_db(exception):
 def found_not(error):
     """ 404 not found error """
     return (make_response(jsonify({'error': 'Not found'}), 404))
+
 
 if __name__ == "__main__":
     if not HBNB_API_HOST:
